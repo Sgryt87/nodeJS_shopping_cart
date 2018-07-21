@@ -8,9 +8,13 @@ var expressHsb = require('express-handlebars');
 var indexRouter = require('./routes/index');
 var mongoose = require('mongoose');
 var session = require('express-session');
+var passport = require('passport');
+var flash = require('connect-flash');
+var routes = require('./routes/index');
 
 var app = express();
 mongoose.connect('mongodb://localhost:27017/shopping', {useNewUrlParser: true});
+require('./config/passport');
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
 app.engine('.hbs', expressHsb({defaultLayout: 'layout', extname: '.hbs'}));
@@ -22,6 +26,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(session({secret: 'somesecret', resave: false, saveUninitialized: false}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
