@@ -1,6 +1,6 @@
 var Product = require('../models/product');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/shopping');
+mongoose.connect('mongodb://localhost:27017/shopping', {useNewUrlParser: true});
 var products = [
     new Product({
         imagePath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRwrHQdMbq8xTocTxjIYWcHFxlnIuaYA0fM4ecCaBFkSFtFNCAHw',
