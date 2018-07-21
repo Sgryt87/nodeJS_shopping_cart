@@ -10,3 +10,7 @@
 #navbar_ul{
     margin-left: 1000px;
 }
+
+.row.mx-auto {
+    margin-top: 20px;
+}
