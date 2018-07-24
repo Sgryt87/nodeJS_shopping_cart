@@ -19,7 +19,8 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/user/signup', (req, res, next) => {
-    res.render('user/signup', {csrfToken: req.csrfToken()});
+    var messages = req.flash('error');
+    res.render('user/signup', {csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
 });
 router.post('/user/signup', passport.authenticate('local.signup', {
     successRedirect: '/user/profile',
